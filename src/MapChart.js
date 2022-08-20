@@ -13,7 +13,7 @@ const geoUrl = "/features.json";
 
 const colorScale = scaleLinear()
   .domain([0.29, 0.68])
-  .range(["#ffedea", "#ff5233"]);
+  .range(["#006ee6", "#d9f1ff"]);
 
 const MapChart = () => {
   const [data, setData] = useState([]);
@@ -43,6 +43,11 @@ const MapChart = () => {
                   key={geo.rsmKey}
                   geography={geo}
                   fill={d ? colorScale(d["2017"]) : "#F5F4F6"}
+                  style={{
+                    default: { outline: "none" },
+                    hover: { fill: "#E42" },
+                    pressed: { outline: "none" },
+                  }}
                 />
               );
             })
