@@ -6,14 +6,28 @@ import {
   Geographies,
   Geography,
   Sphere,
-  Graticule
+  Graticule,
+  Marker
 } from "react-simple-maps";
 
 const geoUrl = "/features.json";
 
 const colorScale = scaleLinear()
   .domain([0.29, 0.68])
-  .range(["#006ee6", "#d9f1ff"]);
+  .range(["#006ee6", "#8cd3ff"]);
+
+const markers = [
+  { name: "Denver", coordinates: [-104.991531, 39.742043] },
+
+  { name: "Peoria", coordinates: [-89.590363, 40.694592] },
+
+  { name: "Ahmedabad", coordinates: [72.571365, 23.022505] },
+
+
+
+
+
+];
 
 const MapChart = () => {
   const [data, setData] = useState([]);
@@ -27,8 +41,7 @@ const MapChart = () => {
   return (
     <ComposableMap
       projectionConfig={{
-        rotate: [-10, 0, 0],
-        scale: 147
+        scale: 197
       }}
     >
       <Sphere stroke="#E4E5E6" strokeWidth={0.5} />
@@ -54,6 +67,18 @@ const MapChart = () => {
           }
         </Geographies>
       )}
+      {markers.map(({ name, coordinates, markerOffset }) => (
+        <Marker key={name} coordinates={coordinates}>
+          <circle cx="1" cy="1" r="3" style={{ fill: "#FFA500" }} />
+          {/* <text
+            textAnchor="middle"
+            y={markerOffset}
+            style={{ fontFamily: "system-ui", fill: "#5D5A6D" }}
+          >
+            {name}
+          </text> */}
+        </Marker>
+      ))}
     </ComposableMap>
   );
 };
